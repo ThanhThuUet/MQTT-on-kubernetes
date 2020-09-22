@@ -1,0 +1,34 @@
+monitoring:
+  enabled: true
+  dedicated: false
+
+operator:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256M
+
+hivemq:
+  nodeCount: "1"
+  cpu: "1"
+  memory: "1Gi"
+  ephemeralStorage: "4Gi"
+  security:
+    allowEmptyClientId: false
+  ports:
+    - name: "mqtt"
+      port: 1883
+      expose: true
+      patch:
+      - '[{"op":"add","path":"/spec/selector/hivemq.com~1node-offline","value":"false"},{"op":"add","path":"/metadata/annotations","value":{"service.spec.externalTrafficPolicy":"Local"}}]'
+      # If you want Kubernetes to expose the MQTT port
+      - '[{"op":"add","path":"/spec/type","value":"LoadBalancer"}]'
+      - '[{"op":"add","path":"/spec/ports/nodePort","value":"30759"}]'
+    - name: "cc"
+      port: 8080
+      expose: true
+      patch:
+        - '[{"op":"add","path":"/spec/sessionAffinity","value":"ClientIP"}]'
+  mqtt:
+    maxQos: 1
+
