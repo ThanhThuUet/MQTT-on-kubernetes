@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqttclient-deployment
+  labels:
+    app: mqttclient
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mqttclient
+  template:
+    metadata:
+      labels:
+        app: mqttclient
+    spec:
+      containers:
+      - name: mqttclient
+        image: mqtt-client:latest
+        ports:
+        - containerPort: 80
+        command: ["mqtt"]
+        args: ["sub", "-t", "TOPIC"]
+        %   
