@@ -1,0 +1,14 @@
+controller:
+  config:
+    use-forwarded-headers: "true"
+    compute-full-forwarded-for: "true"
+    use-proxy-protocol: "true"
+  service:
+    annotations:
+      service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true" 
+    nodePorts:
+      tcp:
+        1883: 32496 # Any random port 30000-32767
+tcp:
+  1883: "hivenq/hivemq-hivemq-mqtt:1883" #namespace/service-name:port
+
