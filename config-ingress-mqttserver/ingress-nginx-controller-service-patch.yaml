@@ -1,0 +1,7 @@
+spec:
+  ports:
+    - name: proxied-tcp-9000
+      nodePort: 30239
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
