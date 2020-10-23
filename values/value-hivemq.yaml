@@ -21,6 +21,7 @@ hivemq:
       expose: true
       patch:
       - '[{"op":"add","path":"/spec/selector/hivemq.com~1node-offline","value":"false"},{"op":"add","path":"/metadata/annotations","value":{"service.spec.externalTrafficPolicy":"Local"}}]'
+      # - '[{"op":"add","path":"/spec/selector/hivemq.com~1node-offline","value":"false"},{"op":"add","path":"/metadata/annotations","value":{"service.spec.externalTrafficPolicy":"Cluster"}}]'
       # If you want Kubernetes to expose the MQTT port
       # - '[{"op":"add","path":"/spec/type","value":"LoadBalancer"}]'
       # - '[{"op":"add","path":"/spec/ports/nodePort","value":"30759"}]'
