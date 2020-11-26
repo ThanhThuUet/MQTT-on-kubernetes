@@ -1,0 +1,21 @@
+apiVersion: "autoscaling.k8s.io/v1beta2"
+kind: VerticalPodAutoscaler
+metadata:
+  name: hivemq-vpa-auto-sad
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: hivemq
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: '*'
+        minAllowed:
+          cpu: 500m
+          memory: 1024Mi
+        maxAllowed:
+           cpu: 2000m
+           memory: 4096Mi
+
