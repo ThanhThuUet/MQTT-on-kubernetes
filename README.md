@@ -1,6 +1,6 @@
 # MQTT-on-kubernetes
 
-Config custom for HiveMQ Broker on Kuber
+Config custom for HiveMQ Broker on Kubernetes
 
 ##  Install hivemq:
 - Add repo HiveMQ:
